@@ -1,1 +1,6 @@
-# Data_Protection_APT
+Data protection project
+
+Contributors:
+-Boyer Mathieu
+-Lelandais Lauriane
+-Murigneux Joannes
