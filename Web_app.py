@@ -1,6 +1,10 @@
+from numpy import character
 import streamlit as st
-from streamlit_chat import message
-
+try:
+    from streamlit_chat import message
+except:
+    !pip install streamlit-chat
+    from streamlit_chat import message
 
 st.set_page_config(page_title="Entreprise Imprimenligne & co",layout="centered")
 
