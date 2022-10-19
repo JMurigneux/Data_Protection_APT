@@ -1,5 +1,4 @@
 # packages in environment at C:\Users\Joanm\.conda\envs\chatbot-imp:
 #
 # Name                    Version                   Build  Channel
-streamlit                 1.13.0                   pypi_0    pypi
 streamlit-chat            0.0.2.1                  pypi_0    pypi
