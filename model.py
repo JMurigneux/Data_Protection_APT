@@ -30,6 +30,9 @@ models = {
     "MLP" : MLPClassifier(),
 }
 
+# SIZES = [100, 10^3, 10^4, 10^5, 10^6, 10^7]
+SIZES = [10^4, 10^5, 10^6, 10^7]
+
 
 def pretraitment(dataset):
     X = dataset.copy()
@@ -53,7 +56,7 @@ def evaluation(model,X_test,y_test):
 
     print("The precision, the recall, and the accuracy can be found in the following classification report :")
     print(classification_report(y_test_t, y_predictions_transformed))
-
+    print("++++++++++++++++++++++++++++++++++++++++")
     print("The balanced accuracy : " + str(balanced_accuracy_score(y_test_t, y_predictions_transformed)))
     print("The Matthews Correlation Coefficient : " + str(matthews_corrcoef(y_test_t,y_predictions_transformed)))
     return
@@ -76,15 +79,23 @@ def is_malware(self, model, malware_features):
     Boolean,probability = False, 0
     return (Boolean, probability)
 
-def consumption_mesure(model_name, train_and_test_dataset):
+def consumption_mesure(model_name, train_and_test_dataset,size=0):
 
     tracemalloc.start()
-    model = init_model(model_name, train_and_test_dataset, evaluation=False)
+    if not size:
+        model = init_model(model_name, train_and_test_dataset, with_evaluation=False)
+    else:
+        model = init_model(model_name, train_and_test_dataset.sample(frac=1)[:size], with_evaluation=True)
+
     current, peak = tracemalloc.get_traced_memory()
-    print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+    print(f"Memory usage peak was {peak / 10**6}MB")
     tracemalloc.stop()
     return
 
 
-df = pd.read_csv("dataset/MSCAD.csv")
-xgb_model = init_model("XGBoost",df)
+def test():
+    df = pd.read_csv("dataset/MSCAD.csv")
+    for size in SIZES:
+        model = consumption_mesure("XGBoost",df,size)
+
+test()
