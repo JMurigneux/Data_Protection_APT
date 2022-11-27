@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
@@ -12,10 +13,13 @@ from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import balanced_accuracy_score,matthews_corrcoef,precision_recall_curve,confusion_matrix, classification_report
+from sklearn.metrics import balanced_accuracy_score,matthews_corrcoef,confusion_matrix,precision_score,recall_score,accuracy_score,f1_score
 from sklearn.ensemble import GradientBoostingClassifier
 
 from xgboost import XGBClassifier,plot_importance,plot_tree
+
+from math import sqrt
+from statistics import mean
 
 import tracemalloc
 
@@ -54,12 +58,46 @@ def evaluation(model,X_test,y_test):
     conf_matrix = confusion_matrix(y_test_t, y_predictions_transformed)
     sn.heatmap(conf_matrix)
 
-    print("The precision, the recall, and the accuracy can be found in the following classification report :")
-    print(classification_report(y_test_t, y_predictions_transformed))
     print("++++++++++++++++++++++++++++++++++++++++")
-    print("The balanced accuracy : " + str(balanced_accuracy_score(y_test_t, y_predictions_transformed)))
-    print("The Matthews Correlation Coefficient : " + str(matthews_corrcoef(y_test_t,y_predictions_transformed)))
+    n=len(conf_matrix)
+    columns = conf_matrix.sum(axis=0)
+    for i in range(0,n):
+        tp = conf_matrix[i][i]
+        fn = conf_matrix[i].sum() - tp
+        fp = columns[i] - tp
+        tn = conf_matrix.sum() - (tp + fn + fp)
+        precision = tp/(tp+fp)
+        recall = tp/(tp+fn)
+        TNR = tn/(tn+fp)
+        sensitivy = tp/(tp+fn)
+        specifity = tn/(fp+tn)
+
+        print(f"Class {i}\n")
+        print("\n\tBalanced data :\n")
+        print(f"Precision : {precision}\n")
+        print(f"Recall : {recall}\n")
+        print(f"True Negative Rate : {TNR}\n")
+        print(f"Accuracy : {(recall+TNR)/2}\n")
+        print("\n\tUnbalanced data :\n")
+        print(f"F1-score : {2*precision*recall/(precision+recall)}\n")
+        print(f"Balanced accuracy : {(sensitivy+specifity)/2}\n")
+        print(f"Matthews Correlation Coefficient : {(tp*tn-fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))}\n\n")
+    
+    FP = conf_matrix.sum(axis=0) - np.diag(conf_matrix)  
+    FN = conf_matrix.sum(axis=1) - np.diag(conf_matrix)
+    TP = np.diag(conf_matrix)
+    TN = conf_matrix.sum() - (FP + FN + TP)
+    print("++++++++++++++++++++++++++++++++++++++++")
+    print(f"Total precision : {precision_score(y_test_t,y_predictions_transformed,average='micro')}\n")
+    print(f"Total recall : {recall_score(y_test_t,y_predictions_transformed,average='micro')}\n")
+    print(f"Total True Negative Rate : {mean(TN/(TN+FP)) }\n")
+    print(f"Total accuracy : {accuracy_score(y_test_t,y_predictions_transformed,)}\n")
+    print(f"Total F1-score : {f1_score(y_test_t,y_predictions_transformed,average='micro')}\n")
+    print(f"Total balanced accuracy : {balanced_accuracy_score(y_test_t,y_predictions_transformed)}\n")
+    print(f"Total Matthews Correlation Coefficient : {matthews_corrcoef(y_test_t,y_predictions_transformed)}\n\n")
+
     return
+
 
 def init_model(model_name, train_and_test_dataset, with_evaluation = True):
     X,Y = pretraitment(train_and_test_dataset)
@@ -98,4 +136,6 @@ def test():
     for size in SIZES:
         model = consumption_mesure("XGBoost",df,size)
 
-test()
+#test()
+df = pd.read_csv("dataset/MSCAD.csv")
+init_model("XGBoost",df, with_evaluation=True)
