@@ -22,6 +22,8 @@ from math import sqrt
 from statistics import mean
 
 import tracemalloc
+import time
+import psutil
 
 label_encoder= preprocessing.LabelEncoder()
 
@@ -29,13 +31,13 @@ models = {
     "XGBoost" : XGBClassifier(),
     "KNN" : KNeighborsClassifier(),
     "CART":DecisionTreeClassifier(),
-    "Random Forrest" : RandomForestClassifier(),
+    "Random Forest" : RandomForestClassifier(),
     "SVM" : SVC(),
     "MLP" : MLPClassifier(),
 }
 
 # SIZES = [100, 10^3, 10^4, 10^5, 10^6, 10^7]
-SIZES = [10^4, 10^5, 10^6, 10^7]
+SIZES = [10^4]
 
 
 def pretraitment(dataset):
@@ -103,6 +105,8 @@ def init_model(model_name, train_and_test_dataset, with_evaluation = True):
     X,Y = pretraitment(train_and_test_dataset)
     X_train, X_test, y_train, y_test = train_test_split(X, Y,train_size=0.3, shuffle = True)
     
+    label_encoder.fit(Y)
+
     y_train_transformed = label_encoder.fit_transform(y_train)
 
     model = models[model_name]
@@ -120,6 +124,8 @@ def is_malware(self, model, malware_features):
 def consumption_mesure(model_name, train_and_test_dataset,size=0):
 
     tracemalloc.start()
+    start = time.time()
+
     if not size:
         model = init_model(model_name, train_and_test_dataset, with_evaluation=False)
     else:
@@ -128,14 +134,18 @@ def consumption_mesure(model_name, train_and_test_dataset,size=0):
     current, peak = tracemalloc.get_traced_memory()
     print(f"Memory usage peak was {peak / 10**6}MB")
     tracemalloc.stop()
+    end = time.time()
+    elapsed = end - start
+    print(elapsed)
+    print(psutil.cpu_times_percent(interval=1))
     return
 
 
 def test():
     df = pd.read_csv("dataset/MSCAD.csv")
     for size in SIZES:
-        model = consumption_mesure("XGBoost",df,size)
+        model = consumption_mesure("XGBoost",df)
 
-#test()
-df = pd.read_csv("dataset/MSCAD.csv")
-init_model("XGBoost",df, with_evaluation=True)
+test()
+#df = pd.read_csv("dataset/MSCAD.csv")
+#init_model("XGBoost",df, with_evaluation=True)
