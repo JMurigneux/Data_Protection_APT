@@ -37,17 +37,28 @@ models = {
     "MLP" : MLPClassifier(),
 }
 
-# SIZES = [100, 10^3, 10^4, 10^5, 10^6, 10^7]
-SIZES = [1000000,]
+SIZES = [1000,10000, 100000, 1000000]
 
 
-def pretraitment(dataset):
-    X = dataset.copy()
-    Y = dataset["Label"]
+def pretraitment(dataset,cut_value=0.5):
+    dataset = dataset.drop("tags",axis=1)
+
+    #drop the columns that contains the less information
+    na = dataset.isna().sum()/dataset.shape[0]
+    unusefull = []
+    for name,value in na.items():
+        if value > cut_value:
+            unusefull.append(name)
+    
+    dataset = dataset.drop(unusefull, axis=1)
+    
+    X = dataset.copy()#.sample(frac=1,random_state=42).reset_index()
+    Y = dataset["label"]
     Y.to_frame()
-    X = X.drop(columns = ['Label'])
-    col = list(dataset.select_dtypes(include=['O']))
-    col = col[:-1]
+    X = X.drop(columns = ['label','raw','time','msg']) #columns that can't be used
+
+    col = list(X.select_dtypes(include=['O']))
+
     enc = OneHotEncoder(handle_unknown='ignore')
     transformed = pd.DataFrame(enc.fit_transform(X[col]).toarray())
     X = X.join(transformed)
@@ -55,55 +66,60 @@ def pretraitment(dataset):
     return X,Y
 
 def evaluation(model,X_test,y_test):
-    y_predictions_transformed = model.predict(X_test)
+    y_test_pred = model.predict(X_test)
 
-    y_test_t = label_encoder.transform(y_test)
-    conf_matrix = confusion_matrix(y_test_t, y_predictions_transformed)
-    sn.heatmap(conf_matrix)
-
-    print("++++++++++++++++++++++++++++++++++++++++")
-    n=len(conf_matrix)
-    columns = conf_matrix.sum(axis=0)
-    for i in range(0,n):
-        tp = conf_matrix[i][i]
-        fn = conf_matrix[i].sum() - tp
-        fp = columns[i] - tp
-        tn = conf_matrix.sum() - (tp + fn + fp)
-        precision = tp/(tp+fp)
-        recall = tp/(tp+fn)
-        TNR = tn/(tn+fp)
-        accuracy = (tp+tn)/(tn+tp+fn+fp)
-
-        print(f"Class {i}\n")
-        print("\n\tBalanced data :\n")
-        print(f"Precision : {precision}\n")
-        print(f"Recall : {recall}\n")
-        print(f"True Negative Rate : {TNR}\n")
-        print(f"Accuracy : {accuracy}\n")
-        print("\n\tUnbalanced data :\n")
-        print(f"F1-score : {2*precision*recall/(precision+recall)}\n")
-        print(f"Balanced accuracy : {(recall+TNR)/2}\n")
-        print(f"Matthews Correlation Coefficient : {(tp*tn-fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))}\n\n")
+    conf_matrix = confusion_matrix(y_test, y_test_pred)
+    print("confusion matrix")
+    print(conf_matrix)
+    if len(conf_matrix)<2:
+        print("only one class")
+        return conf_matrix
     
-    FP = conf_matrix.sum(axis=0) - np.diag(conf_matrix)  
-    FN = conf_matrix.sum(axis=1) - np.diag(conf_matrix)
-    TP = np.diag(conf_matrix)
-    TN = conf_matrix.sum() - (FP + FN + TP)
+    tp = conf_matrix[1][1]
+    fp = conf_matrix[0][1]
+    tn = conf_matrix[0][0]
+    fn = conf_matrix[1][0]
+    
+    print("true positive: ",tp)
+    print("false positive: ",fp)
+    print("true negative: ",tn)
+    print("false negative: ",fn)
+
     print("++++++++++++++++++++++++++++++++++++++++")
-    print(f"Total precision : {precision_score(y_test_t,y_predictions_transformed,average='micro')}\n")
-    print(f"Total recall : {recall_score(y_test_t,y_predictions_transformed,average='micro')}\n")
-    print(f"Total True Negative Rate : {mean(TN/(TN+FP)) }\n")
-    print(f"Total accuracy : {accuracy_score(y_test_t,y_predictions_transformed,)}\n")
-    print(f"Total F1-score : {f1_score(y_test_t,y_predictions_transformed,average='micro')}\n")
-    print(f"Total balanced accuracy : {balanced_accuracy_score(y_test_t,y_predictions_transformed)}\n")
-    print(f"Total Matthews Correlation Coefficient : {matthews_corrcoef(y_test_t,y_predictions_transformed)}\n\n")
 
-    return
+    precision= tp/(tp+fp)
+    recall=tp/(tp+fn)
+    tnr=tn/(tn+fp)
+    accuracy=(tp+tn)/(tp+fp+tn+fn)
+
+    print("Balanced data metrics:")
+    print("precision:" ,precision)
+    print("recall:" ,recall)
+    print("tnr:" ,tnr)
+    print("accuracy:" ,accuracy)
+
+    print("++++++++++++++++++++++++++++++++++++++++")
+
+    f1_score=2 * (precision * recall) / (precision + recall)
+    balanced_accuracy=(recall+tnr)/2
+    matthews=(tn*tp-fn*fp)/(sqrt((tp+fp))*sqrt((tp+fn))*sqrt((tn+fp))*sqrt((tn+fn)))
+
+    print("Unbalanced data metrics:")
+    print("f1_score:" ,f1_score)
+    print("balanced_accuracy:" ,balanced_accuracy)
+    print("matthews correlation coefficient:" ,matthews)
+
+    return conf_matrix
 
 
-def init_model(model_name, train_and_test_dataset, with_evaluation = True):
+def init_model(model_name, train_and_test_dataset,size=0,with_evaluation = True):
     X,Y = pretraitment(train_and_test_dataset)
-    X_train, X_test, y_train, y_test = train_test_split(X, Y,train_size=0.3, shuffle = True)
+
+    if not size:
+        X_train, X_test, y_train, y_test = train_test_split(X, Y,train_size=0.3, shuffle = True,random_state=42)
+    else:
+        ratio=size/len(X)
+        X_train, X_test, y_train, y_test = train_test_split(X, Y,train_size=ratio, shuffle = True,random_state=42)
     
     label_encoder.fit(Y)
 
@@ -116,6 +132,50 @@ def init_model(model_name, train_and_test_dataset, with_evaluation = True):
         evaluation(model, X_test=X_test, y_test=y_test)
 
     return model
+
+def cat_pretraitment(dataset):
+    dataset = dataset.drop("tags",axis=1)
+
+    X = dataset.copy()#.sample(frac=1,random_state=42).reset_index()
+    Y = dataset["label"]
+    Y.to_frame()
+    X = X.drop(columns = ['label','raw'])
+
+    col = list(X.select_dtypes(include=['O']).columns)
+    X[col]=X[col].astype('category')
+    return X,Y
+
+
+def cat_init_model(train_and_test_dataset,size=0, with_evaluation = True): #can only use xgboost
+    X,Y = cat_pretraitment(train_and_test_dataset)
+
+    if not size:
+        X_train, X_test, y_train, y_test = train_test_split(X, Y,train_size=0.3, shuffle = True,random_state=42)
+    else:
+        ratio=size/len(X)
+        X_train, X_test, y_train, y_test = train_test_split(X, Y,train_size=ratio, shuffle = True,random_state=42)
+        
+    model = XGBClassifier(tree_method='hist',enable_categorical=True)
+    model.fit(X_train, y_train)
+    if with_evaluation:
+        evaluation(model, X_test=X_test, y_test=y_test)
+
+    return model
+
+def cat_consumption_mesure(train_and_test_dataset,size):
+
+    tracemalloc.start()
+    start = time.time()
+
+    model = cat_init_model(train_and_test_dataset,size=size, with_evaluation=True)
+
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"Memory usage peak was {peak / 10**6}MB")
+    tracemalloc.stop()
+    end = time.time()
+    elapsed = end - start
+    print(f"time elapsed : {int(elapsed)} sec")
+    return
 
 def is_malware(model, malware_features):
     labels = model.predict(malware_features)
@@ -133,7 +193,10 @@ def consumption_mesure(model_name, train_and_test_dataset,size=0):
     if not size:
         model = init_model(model_name, train_and_test_dataset, with_evaluation=False)
     else:
-        model = init_model(model_name, train_and_test_dataset[:size], with_evaluation=True)
+        if train_and_test_dataset[:size]["label"].nunique()!=1 or model_name!="SVM":
+            model = init_model(model_name, train_and_test_dataset,size=size, with_evaluation=True)
+        else:
+            print("SVM cannot be used with only one class")
 
     current, peak = tracemalloc.get_traced_memory()
     print(f"Memory usage peak was {peak / 10**6}MB")
@@ -152,16 +215,32 @@ def load_model(path):
     return model
 
 def test():
-    df = pd.read_csv("dataset/MSCAD.csv")
-    for key,_ in models.items():
-        print(f"\n\n\nfor model {key}\n\n")
-        for size in SIZES:
-            print(f"for {size} rows\n\n")
+    # df = pd.read_csv("dataset/MSCAD.csv")
+    print("BENCHMARK START")
+    df = pd.read_csv("dataset/cleaned.csv",low_memory=False)
+    df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+
+    print("Dataset loaded")
+    
+    for size in SIZES:
+        print("\n\n###################################################")
+        print(f"for {size} rows\n\n")
+        print("###################################################")
+        for key,_ in models.items():
+            print(f"\n\n\nfor model {key}\n\n")
             model = consumption_mesure(key,df,size)
 
-# test()
-df = pd.read_csv("dataset/MSCAD.csv")
-model = init_model("SVM",df, with_evaluation=True)
-save_model(model,"oui.joblib")
-model = load_model("oui.joblib")
-print("is malware : ", is_malware(model,pretraitment(df)[0][1:3]))
+        print(f"\n\n\nfor xgboost categorical\n\n")
+        model=cat_consumption_mesure(df,size)
+    # for key,_ in models.items():
+    #     print(f"\n\n\nfor model {key}\n\n")
+    #     for size in SIZES:
+    #         print(f"for {size} rows\n\n")
+    #         model = consumption_mesure(key,df,size)
+
+test()
+# print("start")
+# df = pd.read_csv("dataset/cleaned.csv",low_memory=False)
+# df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+# print("data loaded, start training")
+# consumption_mesure("XGBoost",df,10000)  

@@ -1,0 +1,651 @@
+BENCHMARK START
+Dataset loaded
+
+
+###################################################
+for 1000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[700]]
+only one class
+Memory usage peak was 0.726525MB
+time elapsed : 1 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[700]]
+only one class
+Memory usage peak was 0.764087MB
+time elapsed : 0 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[700]]
+only one class
+Memory usage peak was 0.663002MB
+time elapsed : 0 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[700]]
+only one class
+Memory usage peak was 0.662858MB
+time elapsed : 0 sec
+
+
+
+for model SVM
+
+
+SVM cannot be used with only one class
+Memory usage peak was 0.036799MB
+time elapsed : 0 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[700]]
+only one class
+Memory usage peak was 1.038888MB
+time elapsed : 0 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[700]]
+only one class
+Memory usage peak was 1.820078MB
+time elapsed : 0 sec
+
+
+###################################################
+for 10000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[6983    0]
+ [  17    0]]
+true positive:  0
+false positive:  0
+true negative:  6983
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9975714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 6.904125MB
+time elapsed : 0 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[6983    0]
+ [  17    0]]
+true positive:  0
+false positive:  0
+true negative:  6983
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9975714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 6.904693MB
+time elapsed : 0 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[6983    0]
+ [  17    0]]
+true positive:  0
+false positive:  0
+true negative:  6983
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9975714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 6.904356MB
+time elapsed : 0 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[6983    0]
+ [  17    0]]
+true positive:  0
+false positive:  0
+true negative:  6983
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9975714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 6.904213MB
+time elapsed : 0 sec
+
+
+
+for model SVM
+
+
+confusion matrix
+[[6983    0]
+ [  17    0]]
+true positive:  0
+false positive:  0
+true negative:  6983
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9975714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 6.904049MB
+time elapsed : 0 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[6983    0]
+ [  17    0]]
+true positive:  0
+false positive:  0
+true negative:  6983
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9975714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 10.018307MB
+time elapsed : 1 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[6982    1]
+ [  17    0]]
+true positive:  0
+false positive:  1
+true negative:  6982
+false negative:  17
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.0
+recall: 0.0
+tnr: 0.9998567950737506
+accuracy: 0.9974285714285714
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.4999283975368753
+matthews correlation coefficient: -0.0005897737555711671
+Memory usage peak was 14.551676MB
+time elapsed : 1 sec
+
+
+###################################################
+for 100000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[69851     0]
+ [  149     0]]
+true positive:  0
+false positive:  0
+true negative:  69851
+false negative:  149
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9978714285714285
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 68.823798MB
+time elapsed : 4 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[69851     0]
+ [  149     0]]
+true positive:  0
+false positive:  0
+true negative:  69851
+false negative:  149
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9978714285714285
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 68.823738MB
+time elapsed : 10 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[69851     0]
+ [  149     0]]
+true positive:  0
+false positive:  0
+true negative:  69851
+false negative:  149
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9978714285714285
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 68.824439MB
+time elapsed : 2 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[69851     0]
+ [  149     0]]
+true positive:  0
+false positive:  0
+true negative:  69851
+false negative:  149
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9978714285714285
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 68.823645MB
+time elapsed : 4 sec
+
+
+
+for model SVM
+
+
+confusion matrix
+[[69851     0]
+ [  149     0]]
+true positive:  0
+false positive:  0
+true negative:  69851
+false negative:  149
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9978714285714285
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 68.823718MB
+time elapsed : 4 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[69851     0]
+ [  149     0]]
+true positive:  0
+false positive:  0
+true negative:  69851
+false negative:  149
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9978714285714285
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 99.284398MB
+time elapsed : 10 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[69712   139]
+ [  143     6]]
+true positive:  6
+false positive:  139
+true negative:  69712
+false negative:  143
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.041379310344827586
+recall: 0.040268456375838924
+tnr: 0.9980100499634937
+accuracy: 0.9959714285714286
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.04081632653061224
+balanced_accuracy: 0.5191392531696664
+matthews correlation coefficient: 0.03880178290302502
+Memory usage peak was 141.928714MB
+time elapsed : 15 sec
+
+
+###################################################
+for 1000000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1072.024797MB
+time elapsed : 41 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1072.025453MB
+time elapsed : 491 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1072.024797MB
+time elapsed : 25 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1072.024797MB
+time elapsed : 53 sec
+
+
+
+for model SVM
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1072.024797MB
+time elapsed : 130 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1248.120907MB
+time elapsed : 108 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[698959      0]
+ [  1041      0]]
+true positive:  0
+false positive:  0
+true negative:  698959
+false negative:  1041
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: nan
+recall: 0.0
+tnr: 1.0
+accuracy: 0.9985128571428571
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.5
+matthews correlation coefficient: nan
+Memory usage peak was 1433.305657MB
+time elapsed : 180 sec
