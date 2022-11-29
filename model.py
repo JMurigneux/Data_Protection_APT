@@ -33,7 +33,7 @@ models = {
     "KNN" : KNeighborsClassifier(),
     "CART":DecisionTreeClassifier(),
     "Random Forest" : RandomForestClassifier(),
-    #"SVM" : SVC(),
+    "SVM" : SVC(),
     "MLP" : MLPClassifier(),
 }
 
@@ -161,7 +161,7 @@ def test():
 
 # test()
 df = pd.read_csv("dataset/MSCAD.csv")
-model = init_model("XGBoost",df, with_evaluation=True)
+model = init_model("SVM",df, with_evaluation=True)
 save_model(model,"oui.joblib")
 model = load_model("oui.joblib")
 print("is malware : ", is_malware(model,pretraitment(df)[0][1:3]))
