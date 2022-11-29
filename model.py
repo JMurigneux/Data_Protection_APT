@@ -37,7 +37,7 @@ models = {
 }
 
 # SIZES = [100, 10^3, 10^4, 10^5, 10^6, 10^7]
-SIZES = [10^4]
+SIZES = [10^4, 10^5, 10^6,]
 
 
 def pretraitment(dataset):
@@ -129,7 +129,7 @@ def consumption_mesure(model_name, train_and_test_dataset,size=0):
     if not size:
         model = init_model(model_name, train_and_test_dataset, with_evaluation=False)
     else:
-        model = init_model(model_name, train_and_test_dataset.sample(frac=1)[:size], with_evaluation=True)
+        model = init_model(model_name, train_and_test_dataset[:size], with_evaluation=True)
 
     current, peak = tracemalloc.get_traced_memory()
     print(f"Memory usage peak was {peak / 10**6}MB")
@@ -144,7 +144,7 @@ def consumption_mesure(model_name, train_and_test_dataset,size=0):
 def test():
     df = pd.read_csv("dataset/MSCAD.csv")
     for size in SIZES:
-        model = consumption_mesure("XGBoost",df)
+        model = consumption_mesure("XGBoost",df,size)
 
 test()
 #df = pd.read_csv("dataset/MSCAD.csv")
