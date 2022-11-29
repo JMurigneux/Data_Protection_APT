@@ -16,6 +16,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import balanced_accuracy_score,matthews_corrcoef,confusion_matrix,precision_score,recall_score,accuracy_score,f1_score
 from sklearn.ensemble import GradientBoostingClassifier
 
+import joblib
+
 from xgboost import XGBClassifier,plot_importance,plot_tree
 
 from math import sqrt
@@ -23,7 +25,6 @@ from statistics import mean
 
 import tracemalloc
 import time
-import psutil
 
 label_encoder= preprocessing.LabelEncoder()
 
@@ -32,12 +33,12 @@ models = {
     "KNN" : KNeighborsClassifier(),
     "CART":DecisionTreeClassifier(),
     "Random Forest" : RandomForestClassifier(),
-    "SVM" : SVC(),
+    #"SVM" : SVC(),
     "MLP" : MLPClassifier(),
 }
 
 # SIZES = [100, 10^3, 10^4, 10^5, 10^6, 10^7]
-SIZES = [10^4, 10^5, 10^6,]
+SIZES = [1000000,]
 
 
 def pretraitment(dataset):
@@ -71,18 +72,17 @@ def evaluation(model,X_test,y_test):
         precision = tp/(tp+fp)
         recall = tp/(tp+fn)
         TNR = tn/(tn+fp)
-        sensitivy = tp/(tp+fn)
-        specifity = tn/(fp+tn)
+        accuracy = (tp+tn)/(tn+tp+fn+fp)
 
         print(f"Class {i}\n")
         print("\n\tBalanced data :\n")
         print(f"Precision : {precision}\n")
         print(f"Recall : {recall}\n")
         print(f"True Negative Rate : {TNR}\n")
-        print(f"Accuracy : {(recall+TNR)/2}\n")
+        print(f"Accuracy : {accuracy}\n")
         print("\n\tUnbalanced data :\n")
         print(f"F1-score : {2*precision*recall/(precision+recall)}\n")
-        print(f"Balanced accuracy : {(sensitivy+specifity)/2}\n")
+        print(f"Balanced accuracy : {(recall+TNR)/2}\n")
         print(f"Matthews Correlation Coefficient : {(tp*tn-fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))}\n\n")
     
     FP = conf_matrix.sum(axis=0) - np.diag(conf_matrix)  
@@ -117,9 +117,13 @@ def init_model(model_name, train_and_test_dataset, with_evaluation = True):
 
     return model
 
-def is_malware(self, model, malware_features):
-    Boolean,probability = False, 0
-    return (Boolean, probability)
+def is_malware(model, malware_features):
+    labels = model.predict(malware_features)
+    proba = model.predict_proba(malware_features)
+    probability = []
+    for i in range (len(labels)):
+        probability.append(proba[i][labels[i]])
+    return ( labels, probability)
 
 def consumption_mesure(model_name, train_and_test_dataset,size=0):
 
@@ -136,16 +140,28 @@ def consumption_mesure(model_name, train_and_test_dataset,size=0):
     tracemalloc.stop()
     end = time.time()
     elapsed = end - start
-    print(elapsed)
-    print(psutil.cpu_times_percent(interval=1))
+    print(f"time elapsed : {int(elapsed)} sec")
     return
 
+def save_model(model,path):
+    joblib.dump(model, path)
+    return
+
+def load_model(path):
+    model = joblib.load(path)
+    return model
 
 def test():
     df = pd.read_csv("dataset/MSCAD.csv")
-    for size in SIZES:
-        model = consumption_mesure("XGBoost",df,size)
+    for key,_ in models.items():
+        print(f"\n\n\nfor model {key}\n\n")
+        for size in SIZES:
+            print(f"for {size} rows\n\n")
+            model = consumption_mesure(key,df,size)
 
-test()
-#df = pd.read_csv("dataset/MSCAD.csv")
-#init_model("XGBoost",df, with_evaluation=True)
+# test()
+df = pd.read_csv("dataset/MSCAD.csv")
+model = init_model("XGBoost",df, with_evaluation=True)
+save_model(model,"oui.joblib")
+model = load_model("oui.joblib")
+print("is malware : ", is_malware(model,pretraitment(df)[0][1:3]))
