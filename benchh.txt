@@ -1,0 +1,741 @@
+BENCHMARK START
+Dataset loaded
+
+
+###################################################
+for 1000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[2800069    8248]
+ [   5886  184797]]
+true positive:  184797
+false positive:  8248
+true negative:  2800069
+false negative:  5886
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9572742106762672
+recall: 0.9691320149148063
+tnr: 0.9970630096246257
+accuracy: 0.9952870956985662
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9631666180210983
+balanced_accuracy: 0.983097512269716
+matthews correlation coefficient: 0.9606699797590342
+Memory usage peak was 5520.210527MB
+time elapsed : 123 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[2789482   18835]
+ [   4055  186628]]
+true positive:  186628
+false positive:  18835
+true negative:  2789482
+false negative:  4055
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9083289935414162
+recall: 0.9787343391912231
+tnr: 0.9932931360669042
+accuracy: 0.9923674558186062
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9422182730609422
+balanced_accuracy: 0.9860137376290636
+matthews correlation coefficient: 0.9388875211759887
+Memory usage peak was 5544.1815MB
+time elapsed : 372 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[2797915   10402]
+ [   5529  185154]]
+true positive:  185154
+false positive:  10402
+true negative:  2797915
+false negative:  5529
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9468080754361922
+recall: 0.9710042321549378
+tnr: 0.9962960021963333
+accuracy: 0.9946878959653218
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9587535178995389
+balanced_accuracy: 0.9836501171756356
+matthews correlation coefficient: 0.9560020644640914
+Memory usage peak was 5520.026661MB
+time elapsed : 117 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[2800590    7727]
+ [   5922  184761]]
+true positive:  184761
+false positive:  7727
+true negative:  2800590
+false negative:  5922
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598572378537883
+recall: 0.9689432198989947
+tnr: 0.9972485299914504
+accuracy: 0.9954488162720907
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.964378828251616
+balanced_accuracy: 0.9830958749452225
+matthews correlation coefficient: 0.961960181242044
+Memory usage peak was 5520.026585MB
+time elapsed : 151 sec
+
+
+
+for model SVM
+
+
+SVM cannot be used with only one class
+Memory usage peak was 0.036743MB
+time elapsed : 0 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[2791547   16770]
+ [   4055  186628]]
+true positive:  186628
+false positive:  16770
+true negative:  2791547
+false negative:  4055
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.917550811709063
+recall: 0.9787343391912231
+tnr: 0.9940284519162189
+accuracy: 0.993056018672891
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9471555340145807
+balanced_accuracy: 0.9863813955537211
+matthews correlation coefficient: 0.9440065165853802
+Memory usage peak was 5975.433069MB
+time elapsed : 129 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[2805330    2987]
+ [  15187  175496]]
+true positive:  175496
+false positive:  2987
+true negative:  2805330
+false negative:  15187
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9832645125866329
+recall: 0.920354724857486
+tnr: 0.9989363736358823
+accuracy: 0.9939399799933311
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9507701142575427
+balanced_accuracy: 0.9596455492466842
+matthews correlation coefficient: 0.9481331209354034
+Memory usage peak was 5092.415284MB
+time elapsed : 210 sec
+
+
+###################################################
+for 10000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[2789977    9879]
+ [   4552  185592]]
+true positive:  185592
+false positive:  9879
+true negative:  2789977
+false negative:  4552
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9494605337876206
+recall: 0.9760602490743857
+tnr: 0.9964716042539331
+accuracy: 0.9951735785953177
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9625766632522074
+balanced_accuracy: 0.9862659266641594
+matthews correlation coefficient: 0.9601023165970635
+Memory usage peak was 5520.025781MB
+time elapsed : 130 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[2789071   10785]
+ [   5796  184348]]
+true positive:  184348
+false positive:  10785
+true negative:  2789071
+false negative:  5796
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9447300046634859
+recall: 0.9695178391114103
+tnr: 0.9961480161836894
+accuracy: 0.9944545150501672
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9569634315051249
+balanced_accuracy: 0.9828329276475498
+matthews correlation coefficient: 0.9540916666976026
+Memory usage peak was 5543.346878MB
+time elapsed : 456 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[2789977    9879]
+ [   4552  185592]]
+true positive:  185592
+false positive:  9879
+true negative:  2789977
+false negative:  4552
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9494605337876206
+recall: 0.9760602490743857
+tnr: 0.9964716042539331
+accuracy: 0.9951735785953177
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9625766632522074
+balanced_accuracy: 0.9862659266641594
+matthews correlation coefficient: 0.9601023165970635
+Memory usage peak was 5520.026363MB
+time elapsed : 138 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[2789977    9879]
+ [   4552  185592]]
+true positive:  185592
+false positive:  9879
+true negative:  2789977
+false negative:  4552
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9494605337876206
+recall: 0.9760602490743857
+tnr: 0.9964716042539331
+accuracy: 0.9951735785953177
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9625766632522074
+balanced_accuracy: 0.9862659266641594
+matthews correlation coefficient: 0.9601023165970635
+Memory usage peak was 5520.025869MB
+time elapsed : 171 sec
+
+
+
+for model SVM
+
+
+confusion matrix
+[[2792148    7708]
+ [   5899  184245]]
+true positive:  184245
+false positive:  7708
+true negative:  2792148
+false negative:  5899
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598443368949691
+recall: 0.9689761443958264
+tnr: 0.9972470012743513
+accuracy: 0.9954491638795987
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9643886238311213
+balanced_accuracy: 0.9831115728350888
+matthews correlation coefficient: 0.9619702534843246
+Memory usage peak was 5520.025705MB
+time elapsed : 210 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[2789830   10026]
+ [   4522  185622]]
+true positive:  185622
+false positive:  10026
+true negative:  2789830
+false negative:  4522
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9487549067713444
+recall: 0.9762180242342645
+tnr: 0.9964191015537942
+accuracy: 0.9951344481605351
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9622905607166555
+balanced_accuracy: 0.9863185628940294
+matthews correlation coefficient: 0.9598021992529774
+Memory usage peak was 5968.203971MB
+time elapsed : 147 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[2799422     434]
+ [  41884  148260]]
+true positive:  148260
+false positive:  434
+true negative:  2799422
+false negative:  41884
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9970812541191978
+recall: 0.7797248401211713
+tnr: 0.9998449920281615
+accuracy: 0.9858468227424749
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.8751084589095675
+balanced_accuracy: 0.8897849160746664
+matthews correlation coefficient: 0.8751015612153308
+Memory usage peak was 5084.434538MB
+time elapsed : 351 sec
+
+
+###################################################
+for 100000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[2708139    7468]
+ [   5725  178668]]
+true positive:  178668
+false positive:  7468
+true negative:  2708139
+false negative:  5725
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598787982980187
+recall: 0.9689521836512232
+tnr: 0.9972499702644749
+accuracy: 0.9954506896551724
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9643941499855611
+balanced_accuracy: 0.983101076957849
+matthews correlation coefficient: 0.96197646643864
+Memory usage peak was 5520.025301MB
+time elapsed : 113 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[2707854    7753]
+ [   5698  178695]]
+true positive:  178695
+false positive:  7753
+true negative:  2707854
+false negative:  5698
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.958417360336394
+recall: 0.9690986100340034
+tnr: 0.9971450213525006
+accuracy: 0.995361724137931
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.963728390334402
+balanced_accuracy: 0.983121815693252
+matthews correlation coefficient: 0.9612677683776115
+Memory usage peak was 5537.226525MB
+time elapsed : 1168 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[2708139    7468]
+ [   5699  178694]]
+true positive:  178694
+false positive:  7468
+true negative:  2708139
+false negative:  5699
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598844017576089
+recall: 0.9690931868346412
+tnr: 0.9972499702644749
+accuracy: 0.9954596551724137
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644668132935731
+balanced_accuracy: 0.9831715785495581
+matthews correlation coefficient: 0.9620542728496734
+Memory usage peak was 5520.026145MB
+time elapsed : 137 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[2708139    7468]
+ [   5699  178694]]
+true positive:  178694
+false positive:  7468
+true negative:  2708139
+false negative:  5699
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598844017576089
+recall: 0.9690931868346412
+tnr: 0.9972499702644749
+accuracy: 0.9954596551724137
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644668132935731
+balanced_accuracy: 0.9831715785495581
+matthews correlation coefficient: 0.9620542728496734
+Memory usage peak was 5520.025344MB
+time elapsed : 181 sec
+
+
+
+for model SVM
+
+
+confusion matrix
+[[2708139    7468]
+ [   5725  178668]]
+true positive:  178668
+false positive:  7468
+true negative:  2708139
+false negative:  5725
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598787982980187
+recall: 0.9689521836512232
+tnr: 0.9972499702644749
+accuracy: 0.9954506896551724
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9643941499855611
+balanced_accuracy: 0.983101076957849
+matthews correlation coefficient: 0.96197646643864
+Memory usage peak was 5520.025374MB
+time elapsed : 728 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[2708127    7480]
+ [   5698  178695]]
+true positive:  178695
+false positive:  7480
+true negative:  2708127
+false negative:  5698
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9598227474150665
+recall: 0.9690986100340034
+tnr: 0.9972455513629181
+accuracy: 0.9954558620689655
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644383756827357
+balanced_accuracy: 0.9831720806984607
+matthews correlation coefficient: 0.962023987671932
+Memory usage peak was 5896.197848MB
+time elapsed : 176 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[2711282    4325]
+ [ 184393       0]]
+true positive:  0
+false positive:  4325
+true negative:  2711282
+false negative:  184393
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.0
+recall: 0.0
+tnr: 0.9984073542305643
+accuracy: 0.9349248275862069
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: nan
+balanced_accuracy: 0.49920367711528213
+matthews correlation coefficient: -0.010070636095466766
+Memory usage peak was 5005.233269MB
+time elapsed : 551 sec
+
+
+###################################################
+for 1000000 rows
+
+
+###################################################
+
+
+
+for model XGBoost
+
+
+confusion matrix
+[[1867850    5103]
+ [   3979  123068]]
+true positive:  123068
+false positive:  5103
+true negative:  1867850
+false negative:  3979
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9601860015136029
+recall: 0.96868088187836
+tnr: 0.9972754254911895
+accuracy: 0.995459
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644147356377685
+balanced_accuracy: 0.9829781536847748
+matthews correlation coefficient: 0.962000189026981
+Memory usage peak was 5520.025869MB
+time elapsed : 260 sec
+
+
+
+for model KNN
+
+
+confusion matrix
+[[1867832    5121]
+ [   3974  123073]]
+true positive:  123073
+false positive:  5121
+true negative:  1867832
+false negative:  3974
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9600527325771877
+recall: 0.968720237392461
+tnr: 0.9972658149990951
+accuracy: 0.9954525
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9643670100023115
+balanced_accuracy: 0.982993026195778
+matthews correlation coefficient: 0.9619494167599322
+Memory usage peak was 5520.025957MB
+time elapsed : 5820 sec
+
+
+
+for model CART
+
+
+confusion matrix
+[[1867850    5103]
+ [   3973  123074]]
+true positive:  123074
+false positive:  5103
+true negative:  1867850
+false negative:  3973
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9601878652176288
+recall: 0.9687281084952812
+tnr: 0.9972754254911895
+accuracy: 0.995462
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644390809641726
+balanced_accuracy: 0.9830017669932354
+matthews correlation coefficient: 0.9620262469672272
+Memory usage peak was 5520.025301MB
+time elapsed : 99 sec
+
+
+
+for model Random Forest
+
+
+confusion matrix
+[[1867850    5103]
+ [   3973  123074]]
+true positive:  123074
+false positive:  5103
+true negative:  1867850
+false negative:  3973
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9601878652176288
+recall: 0.9687281084952812
+tnr: 0.9972754254911895
+accuracy: 0.995462
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644390809641726
+balanced_accuracy: 0.9830017669932354
+matthews correlation coefficient: 0.9620262469672272
+Memory usage peak was 5520.025301MB
+time elapsed : 288 sec
+
+
+
+for model SVM
+
+
+confusion matrix
+[[1867850    5103]
+ [   3977  123070]]
+true positive:  123070
+false positive:  5103
+true negative:  1867850
+false negative:  3977
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9601866227676655
+recall: 0.9686966240840004
+tnr: 0.9972754254911895
+accuracy: 0.99546
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644228508737559
+balanced_accuracy: 0.982986024787595
+matthews correlation coefficient: 0.9620088750664653
+Memory usage peak was 5520.025523MB
+time elapsed : 3690 sec
+
+
+
+for model MLP
+
+
+confusion matrix
+[[1867849    5104]
+ [   3975  123072]]
+true positive:  123072
+false positive:  5104
+true negative:  1867849
+false negative:  3975
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.9601797528398452
+recall: 0.9687123662896409
+tnr: 0.9972748915749621
+accuracy: 0.9954605
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.9644271872049149
+balanced_accuracy: 0.9829936289323015
+matthews correlation coefficient: 0.9620135335704911
+Memory usage peak was 5520.025301MB
+time elapsed : 333 sec
+
+
+
+for xgboost categorical
+
+
+confusion matrix
+[[1872931      22]
+ [ 127031      16]]
+true positive:  16
+false positive:  22
+true negative:  1872931
+false negative:  127031
+++++++++++++++++++++++++++++++++++++++++
+Balanced data metrics:
+precision: 0.42105263157894735
+recall: 0.00012593764512345825
+tnr: 0.9999882538429955
+accuracy: 0.9364735
+++++++++++++++++++++++++++++++++++++++++
+Unbalanced data metrics:
+f1_score: 0.0002517999763937522
+balanced_accuracy: 0.5000570957440594
+matthews correlation coefficient: 0.00638964469313553
+Memory usage peak was 4213.233304MB
+time elapsed : 350 sec
