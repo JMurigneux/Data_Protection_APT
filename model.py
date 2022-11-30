@@ -232,15 +232,27 @@ def test():
 
         print(f"\n\n\nfor xgboost categorical\n\n")
         model=cat_consumption_mesure(df,size)
-    # for key,_ in models.items():
-    #     print(f"\n\n\nfor model {key}\n\n")
-    #     for size in SIZES:
-    #         print(f"for {size} rows\n\n")
-    #         model = consumption_mesure(key,df,size)
 
-test()
+# test()
 # print("start")
 # df = pd.read_csv("dataset/cleaned.csv",low_memory=False)
 # df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 # print("data loaded, start training")
 # consumption_mesure("XGBoost",df,10000)  
+
+def demo():
+    print("BENCHMARK START")
+    df = pd.read_csv("dataset/cleaned.csv",low_memory=False)
+    df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+
+    print("Dataset loaded")
+    
+    print("\n\n###################################################")
+    print(f"for 1000 rows\n\n")
+    print("###################################################")
+    for key,_ in models.items():
+        print(f"\n\n\nfor model {key}\n")
+        model = consumption_mesure(key,df,1000)
+
+        print(f"\n\n\nfor xgboost categorical\n")
+        model=cat_consumption_mesure(df,10000)
